@@ -9,7 +9,8 @@ COPY pom.xml ./
 
 COPY src ./src
 
-RUN ./mvnw clean package -DskipTests
+# ensure the mvnw wrapper is executable, then build (skip tests)
+RUN chmod +x ./mvnw && ./mvnw clean package -DskipTests
 
 # Stage 2: Run the app
 FROM eclipse-temurin:21-jdk
